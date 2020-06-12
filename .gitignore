@@ -1,0 +1,8 @@
+/server/node_modules
+/server/.env
+/server/public/videos
+
+/client/node_modules
+/client/.next
+/client/out
+/client/public/videos

@@ -1,0 +1,30 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "Client side of Violet",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "preexport": "npm run build",
+    "export": "next export",
+    "prestart": "npm run export",
+    "start": "serve out"
+  },
+  "author": "Aykut",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "next": "^9.4.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-id-swiper": "^3.0.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.88.2",
+    "spotify-web-api-js": "^1.4.0",
+    "swiper": "^5.4.1"
+  },
+  "devDependencies": {
+    "serve": "^11.3.1"
+  }
+}
