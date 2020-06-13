@@ -204,6 +204,9 @@ app.get('/', async function (req, res) {
 app.get('/violet', async function (req, res) {
   res.sendFile(path.join(__dirname + '/public/mainpage.html'));
 });
+app.get('/privacy', async function (req, res) {
+  res.sendFile(path.join(__dirname + '/public/privacy.html'));
+});
 app.use((req, res, next) => {
   res.status(404).sendFile(path.join(__dirname + '/public/404.html'));
 });
