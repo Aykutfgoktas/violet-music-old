@@ -164,7 +164,7 @@ app.get('/refresh_token', function (req, res) {
 app.post('/createnote', async function (req, res) {
   const errorMessages = validateNotesForm(req.body);
   const { header, body, nickname, songname, songid, bestPart, artistname, artistimage } = req.body;
-
+  console.log(req.body);
   if (errorMessages.length > 0) {
     return res.json({ errorMsg: errorMessages });
   } else {
