@@ -27,9 +27,7 @@ class Index extends Component {
                 <li>
                   <a href={process.env.LOGIN}>Login</a>
                 </li>
-                <li>
-                  <a href='#'>Register</a>
-                </li>
+             
               </ul>
             </div>
           </nav>
@@ -47,7 +45,7 @@ class Index extends Component {
           <div className='row'>
             <h2>Musics & Notes</h2>
             <p className='long-copy'>
-              "It is kind a diary with music and notes. Dates are the songs, diary pages are the notes but this diary, a part of the traditional diaries, is public to everyone maybe only one
+              "It is kind a diary with music and notes. Dates are the songs, diary pages are the notes but this diary, a part from the traditional diaries, is public to everyone maybe only the one
               person knows you can understand what you want to tell on the diary pages."
             </p>
           </div>

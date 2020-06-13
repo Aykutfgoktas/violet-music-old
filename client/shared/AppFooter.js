@@ -11,7 +11,7 @@ class AppFooter extends Component {
                 <a href='#'>About us</a>
               </li>
               <li>
-                <a href='#'>Privacy</a>
+                <a href='/privacy'>Privacy</a>
               </li>
             </ul>
           </div>
@@ -29,7 +29,7 @@ class AppFooter extends Component {
               </li>
               <li>
                 <a href='#'>
-                  <i className='ion-social-googleplus'></i>
+                  <i className='ion-social-github'></i>
                 </a>
               </li>
               <li>
@@ -43,7 +43,6 @@ class AppFooter extends Component {
         <div className='row'>
           <p>
             This webpage was created for the Violet.
-            <br />Thank you for everything.
           </p>
           <p>
             Build with <i className='ion-ios-heart' style={{ color: '#ea0000', padding: '0 3px' }}></i> by AFG
