@@ -29,6 +29,14 @@ header {
   height: 100vh;
 }
 
+/*PRIVACY PAGE*/
+.priv-div{
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+/*PRIVACY PAGE*/
+
 .hero-text-box {
   position: absolute;
   width: 1140px;
