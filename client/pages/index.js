@@ -90,7 +90,7 @@ class Index extends Component {
           </div>
           <div className='row'>
             <div className='col span-1-of-2 steps-box'>
-              <div className='works-step clearfix'>
+              <div style={{marginTop:"30px"}} className='works-step clearfix'>
                 <div>1</div>
                 <p>Choose the music you want to listen on Spotify something.</p>
               </div>
