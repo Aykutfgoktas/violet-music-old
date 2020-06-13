@@ -28,7 +28,7 @@ class Index extends Component {
                   <a href={process.env.LOGIN}>Login</a>
                 </li>
                 <li>
-                  <a href='#'>Regiser</a>
+                  <a href='#'>Register</a>
                 </li>
               </ul>
             </div>

@@ -87,7 +87,7 @@ class SongSuggestion extends Component {
         <section className='section-steps space-theme'>
           <div className='row'>
             {' '}
-            <h2>Song that has the most notes</h2>
+            <h2>Songs that has the most notes</h2>
           </div>
           {this.renderRows()}
         </section>
