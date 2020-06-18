@@ -9,6 +9,8 @@ const helmet = require('helmet');
 const { Song, Note } = require('./schemas/CardSchema');
 const { validateNotesForm } = require('./helpers/formValidations');
 var path = require('path');
+const { func } = require('@hapi/joi');
+
 dotenv.config();
 const client_id = process.env.CLIENT_ID; // Your client id
 const client_secret = process.env.CLIENT_SECRET; // Your secret
@@ -120,7 +122,7 @@ app.get('/callback', function (req, res) {
 
         // we can also pass the token to the browser to make requests from there
         res.redirect(
-          /*'http://localhost:3000/mainpage#'*/ '/violet#' +
+          'http://localhost:3000/mainpage#' /*'/violet#'*/ +
             querystring.stringify({
               access_token: access_token,
               //refresh_token: refresh_token,
@@ -197,6 +199,22 @@ app.get('/getpopularsong', async function (req, res) {
   res.status(200).json({ status: 'success', popularsongs });
 });
 
+app.get('/getlistofsongs/:page', async function (req, res) {
+  try {
+    const page = req.params.page;
+    const count = await Song.countDocuments();
+    const foundSongs = await Song.find({})
+      .sort('name')
+      .select('name artistname artistimage noteCount id')
+      .skip(5 * page - 5)
+      .limit(5);
+    return res.status(200).json({ status: 'success', foundSongs, count });
+  } catch (error) {
+    console.log(error);
+    return res.json({ status: 'error', foundSongs: [], count: 0 });
+  }
+});
+
 app.get('/', async function (req, res) {
   res.sendFile(path.join(__dirname + '/public/index.html'));
 });
@@ -210,6 +228,6 @@ app.get('/privacy', async function (req, res) {
 app.use((req, res, next) => {
   res.status(404).sendFile(path.join(__dirname + '/public/404.html'));
 });
-app.listen(process.env.PORT || 3000, '0.0.0.0', function () {
+app.listen(process.env.PORT || 8888, '0.0.0.0', function () {
   console.log('Server is in %s mode', app.settings.env);
 });
