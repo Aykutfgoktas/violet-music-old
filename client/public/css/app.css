@@ -30,7 +30,7 @@ header {
 }
 
 /*PRIVACY PAGE*/
-.priv-div{
+.priv-div {
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -994,4 +994,133 @@ select::-ms-expand {
   transform: rotateY(180deg);
   padding-top: 80%;
   border-radius: 10px;
+}
+/*SONG LIST*/
+.song-list-wrapper {
+  background-color: black;
+  padding-top: 10px;
+  height: 570px;
+}
+
+.song-list-wrapper h2 {
+  margin-top: 25px;
+  color: white;
+}
+
+.song-list {
+  margin-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: #632f79 solid 1px;
+  animation: fadein 1.5s;
+}
+.img-song-part {
+  float: left;
+}
+.img-song-part img {
+  border-radius: 50%;
+  border: 2px solid #632f79;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 50px;
+  height: auto;
+  float: left;
+}
+.img-song-part p {
+  padding: 8px 0px 0 5px;
+  margin-left: 10px;
+  color: white;
+  font-size: 20px;
+  display: inline;
+  float: right;
+  padding-top: 10px;
+}
+
+.play-count-part {
+  float: right;
+}
+
+.song-list .note-count {
+  padding: 15px 0px 0 10px;
+  color: white;
+  font-size: 17px;
+  display: inline;
+  margin-right: 10px;
+}
+
+.song-list button {
+  border-radius: 200px;
+  text-transform: uppercase;
+  padding: 15px;
+  color: white;
+  text-align: center;
+  border-style: solid;
+  background-color: #2a143300;
+  transition: background-color 0.3s, border 0.3s;
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  display: inline;
+}
+
+.song-list button:hover {
+  cursor: pointer;
+  border-color: #632f79;
+  transition: background-color 0.3s, border 0.3s;
+  background-color: #632f79;
+}
+
+@media only screen and (max-width: 1200px) {
+  .song-list p {
+    font-size: 15px;
+    display: block;
+    float: left;
+  }
+  .song-list .note-count {
+    font-size: 15px;
+    display: block;
+    float: left;
+  }
+  .song-list button {
+    padding: 7px;
+    display: block;
+  }
+  .song-list img {
+    display: block;
+  }
+  .play-count-part {
+    display: block;
+  }
+}
+
+/* PAGINATION*/
+.list-pagination {
+  float: right;
+}
+
+.pagination {
+  margin-top: 10px;
+  float: right;
+  display: inline-block;
+}
+
+.pagination button {
+  cursor: pointer;
+  color: white;
+  font-size: 15px;
+  border: 1px solid #632f79;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 200px;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+.pagination button:hover {
+  background-color: #632f79;
+}
+
+.pagination button.active {
+  background-color: #632f79;
+}
+
+.pagination button:hover:not(.active) {
+  background-color: #632f79;
 }

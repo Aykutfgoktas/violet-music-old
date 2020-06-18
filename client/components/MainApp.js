@@ -6,6 +6,7 @@ import SpotifyContext from '../context/SpotifyContext';
 import LoadingSegment from '../shared/LoadingSegment';
 import ErrorModal from './ErrorModal';
 import SongSuggestion from './SongSuggestion';
+import SongList from './SongList/SongList';
 class MainApp extends Component {
   static contextType = SpotifyContext;
 
@@ -53,6 +54,10 @@ class MainApp extends Component {
           <p>"Who cares If one more light goes on"-Chester Bennington</p>
         </div>
         <SongSuggestion />
+
+        <LoadingSegment dimActive={this.context.listOfSongsLoading}>
+          <SongList />
+        </LoadingSegment>
       </>
     );
   }

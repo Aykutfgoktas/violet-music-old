@@ -13,7 +13,10 @@ class SpotifyProvider extends Component {
       nowPlaying: { name: '', artistname: '', artistId: '', artistImg: '', songduration: 0 },
       currentNotes: [],
       popularsongs: [],
+      listOfSongs: [],
+      pageListOfSongs: 1,
       nowPlayinLoading: true,
+      listOfSongsLoading: true,
       userState: 'active',
       userErrorShow: false,
     };
@@ -27,6 +30,7 @@ class SpotifyProvider extends Component {
       this.getBothNotesAndNowPlaying()
         .then(() => {
           this.getPopularSong();
+          this.getListOfSongs();
         })
         .catch();
     } else {
@@ -106,6 +110,20 @@ class SpotifyProvider extends Component {
     }
   };
 
+  getListOfSongs = async (page = 1) => {
+    try {
+      this.setState({ listOfSongsLoading: true });
+      const response = await axios.get(process.env.GET_LIST_OF_SONGS + page);
+      const pageCount = response.data.count % 5 === 0 ? response.data.count / 5 : Math.round(response.data.count / 5 + 1);
+      this.setState({ listOfSongs: response.data.foundSongs, pageListOfSongs: pageCount, listOfSongsLoading: false });
+      return response.data.foundSongs;
+    } catch (error) {
+      console.log(error);
+      this.setState({ listOfSongs: [], pageListOfSongs: 0 });
+      return [];
+    }
+  };
+
   getCurrentSongNotes = async (songid) => {
     try {
       const notes = await axios.get(process.env.GET_SONG_NOTES + songid);
@@ -136,6 +154,10 @@ class SpotifyProvider extends Component {
           userState: this.state.userState,
           userErrorShow: this.state.userErrorShow,
           popularsongs: this.state.popularsongs,
+          listOfSongs: this.state.listOfSongs,
+          pageListOfSongs: this.state.pageListOfSongs,
+          listOfSongsLoading: this.state.listOfSongsLoading,
+          getListOfSongs: this.getListOfSongs,
           getNowPlaying: this.getNowPlaying,
           playFavPart: this.playFavPart,
           getCurrentSongNotes: this.getCurrentSongNotes,
