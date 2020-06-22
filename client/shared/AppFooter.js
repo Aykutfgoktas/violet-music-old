@@ -42,8 +42,10 @@ class AppFooter extends Component {
         </div>
         <div className='row'>
           <p>
-            This webpage was created for the Violet.
+            This webpage was created for the Violet.<br/>
+            The best smile.
           </p>
+          
           <p>
             Build with <i className='ion-ios-heart' style={{ color: '#ea0000', padding: '0 3px' }}></i> by AFG
           </p>

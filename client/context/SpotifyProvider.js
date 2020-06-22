@@ -89,8 +89,9 @@ class SpotifyProvider extends Component {
           artistId: currentSong.item.artists[0].id,
           artistPhoto: currentArtist.images[0].url,
         },
+        userState: 'active',
+        userErrorShow: false,
       });
-      this.setState({ userState: 'active', userErrorShow: false });
       return {
         name: currentSong.item.name,
         songid: currentSong.item.id,
@@ -114,7 +115,8 @@ class SpotifyProvider extends Component {
     try {
       this.setState({ listOfSongsLoading: true });
       const response = await axios.get(process.env.GET_LIST_OF_SONGS + page);
-      const pageCount = response.data.count % 5 === 0 ? response.data.count / 5 : Math.round(response.data.count / 5 + 1);
+      console.log(response.data.count);
+      const pageCount = response.data.count % 5 === 0 ? response.data.count / 5 : Math.floor(response.data.count / 5 +1);
       this.setState({ listOfSongs: response.data.foundSongs, pageListOfSongs: pageCount, listOfSongsLoading: false });
       return response.data.foundSongs;
     } catch (error) {

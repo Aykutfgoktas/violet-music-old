@@ -4,17 +4,6 @@ class Pagination extends Component {
   static contextType = SpotifyContext;
   state = { activeItem: 1, pageon: '', btn1: true };
 
-  /* componentDidMount() {
-    for (let i = 1; i < this.context.pageListOfSongs; i++) {
-      console.log(i)
-      if (i === 1) {
-        this.setState({ ['btn' + i]: true, pageon: 'btn' + i });
-      } else {
-        this.setState({ ['btn' + i]: false });
-      }
-    }
-  }*/
-
   onClickHandler = async (page) => {
     if (this.state.activeItem !== page) {
       this.setState({ [this.state.pageon]: false, ['btn' + page]: true, ['btn' + this.state.activeItem]: false, pageon: 'btn' + page, activeItem: page });
@@ -59,7 +48,6 @@ class Pagination extends Component {
   };
 
   renderPageButton = () => {
-    console.log(this.state);
     const btnarray = [];
     for (let i = 1; i <= this.context.pageListOfSongs; i++) {
       btnarray.push(

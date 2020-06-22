@@ -1021,7 +1021,7 @@ select::-ms-expand {
   border: 2px solid #632f79;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   width: 50px;
-  height: auto;
+  height: 50px;
   float: left;
 }
 .img-song-part p {
@@ -1072,7 +1072,8 @@ select::-ms-expand {
   .song-list p {
     font-size: 15px;
     display: block;
-    float: left;
+    float: right;
+    text-overflow: ellipsis;
   }
   .song-list .note-count {
     font-size: 15px;
@@ -1085,6 +1086,7 @@ select::-ms-expand {
   }
   .song-list img {
     display: block;
+    float: left;
   }
   .play-count-part {
     display: block;
