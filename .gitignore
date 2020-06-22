@@ -4,6 +4,4 @@
 
 /client/node_modules
 /client/.next
-/client/out
 /client/public/videos
-/client/next.config.js
