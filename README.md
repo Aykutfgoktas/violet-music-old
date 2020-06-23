@@ -54,12 +54,12 @@ Server has two module one of them is spotify-api module which redirects the user
 ## Todos
 
 ### Server
--Chat Module
--Auth Module
+- Chat Module
+- Auth Module
 
 ### Client
--Missing Page
--Chat component
+- Missing Page
+- Chat component
 
 
 
