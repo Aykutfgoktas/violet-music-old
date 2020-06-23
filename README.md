@@ -1,6 +1,8 @@
 # Violet-Music 
 <img src="client/public/images/logo2.png" alt="violet-logo" title="Violet App Logo" width="150" height="150" />
 
+Online on Heroku [Violet Music](https://violet-music.herokuapp.com/)
+
 Violet Music is an application that user can write notes for the songs that they are currently listening on Spotify. Also users can read the notes of other people if the notes are exists on currently listening song. Application show the songs that have the notes which is written by the users.
 
 ### Technology Stack
