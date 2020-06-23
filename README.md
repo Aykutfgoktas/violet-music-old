@@ -1,12 +1,12 @@
 # Violet-Music 
-<img src="client/public/images/logo2.png" alt="violet-logo" title="Violet App Logo" width="150" height="100" />
+<img src="client/public/images/logo2.png" alt="violet-logo" title="Violet App Logo" width="150" height="150" />
 
-Violet Music is an application that user can write notes for the songs that they are currently listening on Spotify. Also users can read the notes of other people if the notes are exists on currenntly listening song. Application show the songs that have the notes which is written by the users.
+Violet Music is an application that user can write notes for the songs that they are currently listening on Spotify. Also users can read the notes of other people if the notes are exists on currently listening song. Application show the songs that have the notes which is written by the users.
 
 ### Technology Stack
 - [NextJS](https://nextjs.org/)  
 - [NestJS](https://nestjs.com/) 
-- [MongoDB]https://mongoosejs.com/docs/guide.html (Mongoose) 
+- [MongoDB (Mongoose)](https://mongoosejs.com/docs/guide.html)
 - [Spotify API](https://developer.spotify.com/documentation/general/guides/)
 - [Semantic UI React](https://react.semantic-ui.com/)
 
@@ -49,7 +49,15 @@ Client side gets its data from Spotify API and Violet back-end (For now only get
 
 Server has two module one of them is spotify-api module which redirects the user to the Spotify to login to the Spotify then after successfull login operation Spotify redirects user to Violet with users token (on URL). The other module is notes module which stores the notes to the mongodb database.
 
+## Todos
 
+### Server
+-Chat Module
+-Auth Module
+
+### Client
+-Missing Page
+-Chat component
 
 
 
