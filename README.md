@@ -45,7 +45,7 @@ Note: Client works on port 3000 and communicate server with port 8888. On client
 
 ### Client
 
-Client side gets its data from Spotify API and Violet back-end (For now only getting the notes). Token for the user is gotten form url in order to use the Spotify API. Getting data operation is done SpotifyProvider which is under the client/context directory. It wraps all the component and share its state. Client side use Spotify API to get the information about users currently listening song and if user wants modify the current playing song. Creating note for the songs is done CreateNoteFormPart which is under the client/components directory and sends the post data to the Violent back-end.
+Client side gets its data from Spotify API and Violet back-end (For now only getting and creating the notes). Token for the user is gotten form url in order to use the Spotify API. Getting data operation is done SpotifyProvider which is under the client/context directory. It wraps all the component and share its state. Client side use Spotify API to get the information about users currently listening song and if user wants modify the current playing song. Creating note for the songs is done CreateNoteFormPart which is under the client/components directory and sends the post data to the Violent back-end.
 
 ### Server
 
