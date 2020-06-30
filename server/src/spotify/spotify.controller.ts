@@ -7,7 +7,7 @@ import { SpotifyService } from './spotify.service';
 export class SpotifyController {
     constructor(private spotifyService: SpotifyService) { }
     private readonly stateKey = 'spotify_auth_state';
-
+    private clientURL = 'http://localhost:3000/violet#';
     @Get("/login")
     async login(@Res() response: Response): Promise<void> {
         const state = this.generateRandomString(16);
@@ -31,7 +31,7 @@ export class SpotifyController {
             console.log(user);
 
             if (access_token) {
-                res.redirect('http://localhost:3000/violet#' + querystring.stringify({ access_token: access_token,/*refresh_token: refresh_token*/ }));
+                res.redirect(this.clientURL + querystring.stringify({ access_token: access_token,/*refresh_token: refresh_token*/ }));
             } else {
                 res.redirect('/#' + querystring.stringify({ error: 'invalid_token', }));
             }
