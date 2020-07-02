@@ -30,6 +30,7 @@ MONGO_URI = <Mongodb database uri>
 CLIENT_ID = <Spotify client ID>
 CLIENT_SECRET = <Spotify client Secret>
 REDIRECT_URI = <Spotify redirect URL>
+JWT_SECRETS= <JWT secret key>
 ```
 For more information about [Spotify API](https://developer.spotify.com/documentation/general/guides/app-settings/) 
 
