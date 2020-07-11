@@ -25,6 +25,26 @@ export class SongService {
     return songs;
   }
 
+  async findPopular(): Promise<Song[]> {
+    const popularsongs = await this.songModel
+      .find({})
+      .select('id name artistimage artistname -_id')
+      .sort('-noteCount')
+      .limit(5);
+    return popularsongs;
+  }
+
+  async getSongsWithPagination(page: number): Promise<{ foundSongs: Song[]; count: number }> {
+    const count = await this.songModel.countDocuments();
+    const foundSongs = await this.songModel
+      .find({})
+      .sort('name')
+      .select('name artistname artistimage noteCount id')
+      .skip(5 * page - 5)
+      .limit(5);
+    return { foundSongs, count };
+  }
+
   private async checkIfSongExist(songid: string): Promise<Song[]> {
     const existSong = await this.songModel.find({ id: songid });
     return existSong;

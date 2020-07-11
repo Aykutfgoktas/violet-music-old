@@ -18,4 +18,12 @@ export class CardService {
     const song = this.songService.find(songid);
     return song;
   }
+
+  async findPopular(): Promise<Song[]> {
+    return this.songService.findPopular();
+  }
+
+  async getSongsWithPagination(page: number): Promise<{ foundSongs: Song[]; count: number }> {
+    return this.songService.getSongsWithPagination(page);
+  }
 }
