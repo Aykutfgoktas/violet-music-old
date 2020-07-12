@@ -1,13 +1,19 @@
-import { Controller, Post, Body, Res, HttpStatus, Get, Param } from '@nestjs/common';
+import { Controller, Post, Body, Res, HttpStatus, Get, Param, UseGuards, Request } from '@nestjs/common';
 import { Response } from 'express';
 import { CardService } from './card.service';
-import { CreateCardDto } from './dto/create-note.dto';
+import { CreateCardDto } from './dto/create-card.dto';
+import { Roles } from 'src/auth/roles/roles.decorator';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { RolesGuard } from 'src/auth/roles/roles.guard';
 @Controller('card')
 export class CardController {
   constructor(private cardService: CardService) {}
+  @Roles('user')
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Post('create')
-  async createNote(@Res() res: Response, @Body() createCardDto: CreateCardDto): Promise<Response> {
-    const songCard = await this.cardService.create(createCardDto);
+  async createNote(@Res() res: Response, @Body() createCardDto: CreateCardDto, @Request() req): Promise<Response> {
+    const user = req.user;
+    const songCard = await this.cardService.create(createCardDto, user);
     return res.status(HttpStatus.CREATED).json(songCard);
   }
 
@@ -17,7 +23,7 @@ export class CardController {
     return res.status(HttpStatus.ACCEPTED).json({ status: 'success', notes });
   }
 
-  @Get('find/popular')
+  @Get('findPopular')
   async getPopularSongs(@Res() res: Response): Promise<Response> {
     const popularsongs = await this.cardService.findPopular();
     return res.status(HttpStatus.ACCEPTED).json({ status: 'success', popularsongs });

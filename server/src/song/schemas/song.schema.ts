@@ -1,6 +1,5 @@
 import * as mongoose from 'mongoose';
 import { NoteSchema } from '../../note/schemas/note.schema';
-import { Note } from '../../note/interfaces/note.interface';
 
 const SongSchema = new mongoose.Schema({
   id: {
@@ -15,10 +14,7 @@ const SongSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Artist name is required'],
   },
-  notes: {
-    type: [NoteSchema],
-    default: [],
-  },
+  notes: [{ type: [mongoose.Schema.Types.ObjectId], ref: 'Note', default: [] }],
   artistimage: {
     type: String,
   },
@@ -28,8 +24,8 @@ const SongSchema = new mongoose.Schema({
   },
 });
 
-SongSchema.methods.addNote = function(note: Note) {
-  this.notes.push(note);
+SongSchema.methods.addNote = function(noteid) {
+  this.notes.push(noteid);
   this.noteCount = this.noteCount + 1;
   return this;
 };

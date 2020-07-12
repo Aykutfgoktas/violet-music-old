@@ -13,11 +13,11 @@ export class CreateCardDto {
     @MaxLength(300, { message: "Body of the note's maximum length must be 300 character." })
     readonly body: string;
 
-    @IsNotEmpty({ message: "Note for the nickname is required." })
+    /*@IsNotEmpty({ message: "Note for the nickname is required." })
     @IsString({ message: "Note for the nickname must be text." })
     @MinLength(3, { message: "Nickname minimum length must be 3 character." })
     @MaxLength(15, { message: "Nickname maximum length must be 15 character." })
-    readonly nickname: string;
+    readonly nickname: string;*/
 
     @IsNotEmpty({ message: "Note for the song name is required." })
     @IsString({ message: "Note for the song name must be text." })

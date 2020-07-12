@@ -1,5 +1,5 @@
 import { Document } from 'mongoose';
-import { Note } from '../../notes/interfaces/note.interface';
+import { Note } from '../../note/interfaces/note.interface';
 export interface User extends Document {
   readonly _id;
   readonly nickname: string;

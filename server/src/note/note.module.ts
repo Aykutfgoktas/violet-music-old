@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { NoteService } from './note.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { NoteSchema } from 'src/notes/schemas/note.schema';
+import { NoteSchema } from 'src/note/schemas/note.schema';
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: 'Note', schema: NoteSchema }])],

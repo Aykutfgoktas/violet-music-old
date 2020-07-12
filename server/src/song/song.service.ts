@@ -7,13 +7,12 @@ import { CreateSongDto } from './dto/create-song.dto';
 export class SongService {
   constructor(@InjectModel('Song') private readonly songModel: Model<Song>) {}
 
-  async create(newSong: CreateSongDto) {
+  async create(newSong: CreateSongDto): Promise<Song> {
     const { songid, songname, artistname, artistimage, note } = newSong;
     const existSong = await this.checkIfSongExist(newSong.songid);
     if (existSong.length === 0) {
-      let newSong = new this.songModel({ id: songid, name: songname, artistname: artistname, artistimage: artistimage, $push: { notes: note } });
-      newSong = await newSong.addNote(note).save();
-      return newSong;
+      const newSong = new this.songModel({ id: songid, name: songname, artistname: artistname, artistimage: artistimage });
+      return await newSong.addNote(note._id).save();
     } else {
       existSong[0].addNote(note);
       return existSong[0].save();
@@ -21,14 +20,18 @@ export class SongService {
   }
 
   async find(songid: string): Promise<Song[]> {
-    const songs = await this.songModel.find({ id: songid });
+    const songs = await this.songModel
+      .find({ id: songid })
+      .populate({ path: 'notes', select: '-__v', populate: { path: 'user', select: 'nickname' } })
+      .select('-__v -_id');
+
     return songs;
   }
 
   async findPopular(): Promise<Song[]> {
     const popularsongs = await this.songModel
       .find({})
-      .select('id name artistimage artistname -_id')
+      .select('id name artistimage artistname noteCount -_id')
       .sort('-noteCount')
       .limit(5);
     return popularsongs;
