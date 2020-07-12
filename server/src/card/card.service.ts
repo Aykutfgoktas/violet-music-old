@@ -16,15 +16,6 @@ export class CardService {
 
   async find(songid: string) {
     const song = await this.songService.find(songid);
-    console.log(song);
     return song;
-  }
-
-  async findPopular(): Promise<Song[]> {
-    return await this.songService.findPopular();
-  }
-
-  async getSongsWithPagination(page: number): Promise<{ foundSongs: Song[]; count: number }> {
-    return this.songService.getSongsWithPagination(page);
   }
 }

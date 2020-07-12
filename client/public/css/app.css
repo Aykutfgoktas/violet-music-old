@@ -1126,3 +1126,23 @@ select::-ms-expand {
 .pagination button:hover:not(.active) {
   background-color: #632f79;
 }
+
+.login-form {
+  padding: 80px;
+  border-radius: 10px;
+  background-color: #fff;
+  width: fit-content;
+  animation: fadein 1s;
+
+}
+
+.login-input {
+  margin-top: 30px;
+  padding: 10px 30px;
+  font-weight: 300px;
+  font-size: 100%;
+  text-decoration: none;
+  border-radius: 200px;
+  display: block;
+  border: 1px solid #8e44ad;
+}

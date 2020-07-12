@@ -6,6 +6,17 @@ import { Roles } from 'src/auth/roles/roles.decorator';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { RolesGuard } from 'src/auth/roles/roles.guard';
 
+/**
+ * * CreateCardDto
+ * @params header:string
+ * @params body:string
+ * @params songname:string
+ * @params songid:stringg
+ * @params bestpart:string
+ * @params artistname:string
+ * @params artistimage:string
+ */
+
 @Controller('card')
 export class CardController {
   constructor(private cardService: CardService) {}
@@ -17,7 +28,7 @@ export class CardController {
     const songCard = await this.cardService.create(createCardDto, user);
     return res.status(HttpStatus.CREATED).json(songCard);
   }
-
+  /** Get the notes for the current playing song. Get the id of the Spotify songs id */
   @Get('find/:id')
   async getnotes(@Param('id') id: string, @Res() res: Response): Promise<Response> {
     const notes = await this.cardService.find(id);
