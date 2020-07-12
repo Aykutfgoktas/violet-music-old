@@ -23,26 +23,4 @@ export class CardController {
     const notes = await this.cardService.find(id);
     return res.status(HttpStatus.ACCEPTED).json({ status: 'success', notes });
   }
-
-  @Get('find')
-  async getListOfSongs(@Query() query: { page: number }, @Res() res: Response): Promise<Response> {
-    const page = query.page;
-    if (query.page) {
-      try {
-        const foundedSong = await this.cardService.getSongsWithPagination(page);
-        return res.status(HttpStatus.ACCEPTED).json({ status: 'success', foundSongs: foundedSong.foundSongs, count: foundedSong.count });
-      } catch (error) {
-        console.log(error);
-        return res.json({ status: 'error', foundSongs: [], count: 0 });
-      }
-    } else {
-      throw new BadRequestException('Please enter a valid query string');
-    }
-  }
-
-  @Get('findPopular')
-  async getPopularSongs(@Res() res: Response): Promise<Response> {
-    const popularsongs = await this.cardService.findPopular();
-    return res.status(HttpStatus.ACCEPTED).json({ status: 'success', popularsongs });
-  }
 }
