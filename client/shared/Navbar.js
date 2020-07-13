@@ -26,7 +26,7 @@ class Navbar extends Component {
 
 /**
  * TODO: It is required for the Spotify Login.  
- * <li> <a href={process.env.LOGIN}>Login</a> </li>
+ * <li> <a href={process.env.LOGIN_SPOTIFY}>Login</a> </li>
  */
 
 export default Navbar;
