@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import EmotionalCard from '../shared/EmotionalCard';
 import AppHead from '../shared/AppHead';
 import AppFooter from '../shared/AppFooter';
+import Navbar from '../shared/Navbar';
 class Index extends Component {
   state = { visible: false };
   componentDidMount() {
@@ -14,23 +15,7 @@ class Index extends Component {
       <>
         <AppHead />
         <header>
-          <nav>
-            <div className='row'>
-              <img src='/images/logo2.png' alt='Violet Logo' className='logo' />
-              <ul className='main-nav'>
-                <li>
-                  <a href='/'>Home</a>
-                </li>
-                <li>
-                  <a href='#whatis'>What is Violet ?</a>
-                </li>
-                <li>
-                  <a href={process.env.LOGIN}>Login</a>
-                </li>
-             
-              </ul>
-            </div>
-          </nav>
+          <Navbar />
           <div className='hero-text-box'>
             <h1 className={this.state.visible ? 'inspiredon' : 'inspiredoff'}>Inspired by the Violet</h1>
             <a className={this.state.visible ? 'btn btn-full' : 'btn btn-full-off'} href='#writenote'>
@@ -45,8 +30,8 @@ class Index extends Component {
           <div className='row'>
             <h2>Musics & Notes</h2>
             <p className='long-copy'>
-              "It is kind a diary with music and notes. Dates are the songs, diary pages are the notes but this diary, a part from the traditional diaries, is public to everyone maybe only the one
-              person knows you can understand what you want to tell on the diary pages."
+              "It is kind a diary with music and notes. Dates are the songs, diary pages are the notes but this diary, a part from the traditional diaries, is public to everyone maybe only
+              the one person knows you can understand what you want to tell on the diary pages."
             </p>
           </div>
 
@@ -88,7 +73,7 @@ class Index extends Component {
           </div>
           <div className='row'>
             <div className='col span-1-of-2 steps-box'>
-              <div style={{marginTop:"30px"}} className='works-step clearfix'>
+              <div style={{ marginTop: '30px' }} className='works-step clearfix'>
                 <div>1</div>
                 <p>Choose the music you want to listen on Spotify something.</p>
               </div>

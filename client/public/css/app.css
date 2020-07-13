@@ -1131,9 +1131,7 @@ select::-ms-expand {
   padding: 80px;
   border-radius: 10px;
   background-color: #fff;
-  width: fit-content;
   animation: fadein 1s;
-
 }
 
 .login-input {

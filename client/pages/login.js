@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LoginForm from '../components/Forms/LoginForm';
 import AppHead from '../shared/AppHead';
+import Navbar from '../shared/Navbar';
 class Login extends Component {
   render() {
     return (
@@ -8,19 +9,7 @@ class Login extends Component {
         <AppHead />
         <header>
           <div>
-            <nav style={{ color: 'white' }}>
-              <div className='row'>
-                <img src='/images/logo2.png' alt='Violet Logo' className='logo' />
-                <ul className='main-nav'>
-                  <li>
-                    <a href='/'>Home</a>
-                  </li>
-                  <li>
-                    <a href={process.env.LOGIN}>Login</a>
-                  </li>
-                </ul>
-              </div>
-            </nav>
+         <Navbar/>
           </div>
           <div className='row'>
             <div style={{ display: 'flex', justifyContent:"center",color: 'white' }}>
