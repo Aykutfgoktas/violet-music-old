@@ -1128,11 +1128,35 @@ select::-ms-expand {
 }
 
 /*Login Form*/
+.login-div {
+  padding-top: 5%;
+  display: flex;
+  justify-content: center;
+}
+
 .login-form {
-  padding: 80px;
+  padding: 10px 80px 80px 80px;
   border-radius: 10px;
   background-color: #fff;
   animation: fadein 1s;
+}
+
+.logo-form {
+  height: 100px;
+  width: auto;
+}
+
+.logo-div-form {
+  width: fit-content;
+  position: relative;
+  top: -65px;
+  left: 90px;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  border-radius: 5em;
+  padding: 5px 13px 5px 13px;
 }
 
 .login-input {
@@ -1142,6 +1166,6 @@ select::-ms-expand {
   font-size: 100%;
   text-decoration: none;
   border-radius: 200px;
-  display: block;
+  display: list-item;
   border: 1px solid #8e44ad;
 }

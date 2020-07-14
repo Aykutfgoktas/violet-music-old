@@ -4,7 +4,7 @@ import axios from 'axios';
 class LoginForm extends Component {
   constructor() {
     super();
-    this.state = { username: null, password: null };
+    this.state = { username: null, password: null, errorMessage: false };
   }
 
   onChange = (event) => {
@@ -16,16 +16,34 @@ class LoginForm extends Component {
     const { username, password } = this.state;
     try {
       const token = await axios.post(process.env.LOGIN, { username, password });
+      this.setState({ errorMessage: false });
       console.log(token);
     } catch (error) {
+      this.setState({ errorMessage: true });
       console.log(error);
+    }
+  };
+
+  renderErrorMessages = () => {
+    if (this.state.errorMessage) {
+      return (
+        <ul>
+          <li style={{ color: 'red' }}>Username or password is wrong.</li>
+        </ul>
+      );
+    } else {
+      return;
     }
   };
 
   render() {
     return (
       <form onSubmit={this.loginSubmit} className='login-form'>
-        <h2 style={{ color: 'black' }}>Login Form</h2>
+        <div className='logo-div-form'>
+          <img src='/images/logo2.png' alt='Violet Logo' className='logo-form' />
+        </div>
+        {this.renderErrorMessages()}
+        <h2 style={{ color: 'black' }}>Login</h2>
         <input onChange={this.onChange} required placeholder='Nickname' name='username' className='login-input' />
         <input onChange={this.onChange} required type='password' placeholder='Password' name='password' className='login-input' />
         <button className='msg-button' type='submit'>

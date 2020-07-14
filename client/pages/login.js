@@ -10,12 +10,8 @@ class Login extends Component {
         <header>
           <Navbar />
 
-          <div className='row'>
-            <div style={{ display: 'flex', justifyContent: 'center', color: 'white' }}>
-              <div style={{ paddingTop: '15%' }}>
-                <LoginForm />
-              </div>
-            </div>
+          <div className='row login-div'>
+            <LoginForm />
           </div>
         </header>
       </>
