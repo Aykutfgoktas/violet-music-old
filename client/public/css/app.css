@@ -1140,7 +1140,9 @@ select::-ms-expand {
   background-color: #fff;
   animation: fadein 1s;
 }
-
+.login-form input{
+  margin-left: 10px;
+}
 .logo-form {
   height: 100px;
   width: auto;

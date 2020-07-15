@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import LoginForm from '../components/Forms/LoginForm';
+import RegisterForm from '../components/Forms/RegisterForm';
 import AppHead from '../shared/AppHead';
 import Navbar from '../shared/Navbar';
-class Login extends Component {
+class Register extends Component {
   render() {
     return (
       <>
@@ -10,7 +10,7 @@ class Login extends Component {
         <header>
           <Navbar />
           <div className='row login-div'>
-            <LoginForm />
+            <RegisterForm />
           </div>
         </header>
       </>
@@ -18,4 +18,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Register;

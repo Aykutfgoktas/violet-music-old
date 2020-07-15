@@ -5,7 +5,7 @@ export class CreateUserDto {
     @IsString({ message: "Nickname for the user must be text." })
     @MinLength(3, { message: "Nickname minimum length must be 3 character." })
     @MaxLength(15, { message: "Nickname maximum length must be 15 character." })
-    readonly nickname: string;
+    readonly username: string;
 
     readonly password: string;
 }

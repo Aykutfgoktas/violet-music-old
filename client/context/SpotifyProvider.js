@@ -19,13 +19,16 @@ class SpotifyProvider extends Component {
       listOfSongsLoading: true,
       userState: 'active',
       userErrorShow: false,
+      VAC: null,
     };
   }
 
   componentDidMount() {
     const params = this.getHashParams();
     this.state = { loggedIn: params.access_token ? true : false };
-    if (params.access_token) {
+    const access_token = localStorage.getItem('access_token');
+    console.log(access_token);
+    if (params.access_token && access_token) {
       this.spotifyWebApi.setAccessToken(params.access_token);
       this.getBothNotesAndNowPlaying()
         .then(() => {
@@ -116,7 +119,7 @@ class SpotifyProvider extends Component {
       this.setState({ listOfSongsLoading: true });
       const response = await axios.get(process.env.GET_LIST_OF_SONGS + page);
       console.log(response.data.count);
-      const pageCount = response.data.count % 5 === 0 ? response.data.count / 5 : Math.floor(response.data.count / 5 +1);
+      const pageCount = response.data.count % 5 === 0 ? response.data.count / 5 : Math.floor(response.data.count / 5 + 1);
       this.setState({ listOfSongs: response.data.foundSongs, pageListOfSongs: pageCount, listOfSongsLoading: false });
       return response.data.foundSongs;
     } catch (error) {

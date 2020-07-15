@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Button } from 'semantic-ui-react';
+import Router from 'next/router';
 
 class LoginForm extends Component {
   constructor() {
     super();
-    this.state = { username: null, password: null, errorMessage: false };
+    this.state = { username: null, password: null, errorMessage: false, loading: false };
   }
 
   onChange = (event) => {
@@ -14,12 +16,15 @@ class LoginForm extends Component {
   loginSubmit = async (e) => {
     e.preventDefault();
     const { username, password } = this.state;
+    this.setState({ loading: true });
     try {
-      const token = await axios.post(process.env.LOGIN, { username, password });
-      this.setState({ errorMessage: false });
-      console.log(token);
+      const response = await axios.post(process.env.LOGIN, { username, password });
+      this.setState({ errorMessage: false, loading: false });
+      const access_token = response.data.access_token;
+      localStorage.setItem('access_token', access_token);
+      await Router.push('/profile');
     } catch (error) {
-      this.setState({ errorMessage: true });
+      this.setState({ errorMessage: true, loading: false });
       console.log(error);
     }
   };
@@ -44,11 +49,11 @@ class LoginForm extends Component {
         </div>
         {this.renderErrorMessages()}
         <h2 style={{ color: 'black' }}>Login</h2>
-        <input onChange={this.onChange} required placeholder='Nickname' name='username' className='login-input' />
-        <input onChange={this.onChange} required type='password' placeholder='Password' name='password' className='login-input' />
-        <button className='msg-button' type='submit'>
+        <input autoComplete='off' onChange={this.onChange} required placeholder='Nickname' name='username' className='login-input' />
+        <input autoComplete='off' onChange={this.onChange} required type='password' placeholder='Password' name='password' className='login-input' />
+        <Button style={{ marginTop: '20px', borderRadius: '200px', padding: '10px 30px' }} loading={this.state.loading} type='submit' className='msg-button' color={'violet'}>
           Login
-        </button>
+        </Button>
       </form>
     );
   }
