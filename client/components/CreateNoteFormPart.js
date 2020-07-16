@@ -80,19 +80,36 @@ class CreateNoteFormPart extends Component {
     } else {
       this.setState({ favChecked: false, loadingAnimate: { transform: 'rotateY(180deg)' }, responseStatus: 'creating' });
 
-      const response = await axios.post(process.env.CREATE_NOTE, {
-        header: this.state.header,
-        body: this.state.body,
-        nickname: this.state.nickname,
-        songname: this.context.nowPlaying.name,
-        artistname: this.context.nowPlaying.artistname,
-        songid: this.context.nowPlaying.songid,
-        artistimage: this.context.nowPlaying.artistPhoto,
-        bestPart: {
-          minutes: this.state.favChecked ? parseInt(this.state.minutes) : -1,
-          seconds: this.state.favChecked ? parseInt(this.state.seconds) : -1,
+      /**
+   readonly header: string;
+readonly body: string;
+readonly songname: string;
+  readonly songid: string;
+ readonly bestPart: { minutes: number, seconds: number };
+readonly artistname: string;
+readonly artistimage: string;
+ */
+      var config = { headers: { Authorization: 'bearer ' + this.context.VAC } };
+      const response = await axios.post(
+        process.env.CREATE_NOTE,
+        {
+          header: this.state.header,
+          body: this.state.body,
+          /**
+           * TODO: DELETE NICKNAME ON REQUEST
+           * */
+          nickname: this.state.nickname,
+          songname: this.context.nowPlaying.name,
+          artistname: this.context.nowPlaying.artistname,
+          songid: this.context.nowPlaying.songid,
+          artistimage: this.context.nowPlaying.artistPhoto,
+          bestPart: {
+            minutes: this.state.favChecked ? parseInt(this.state.minutes) : -1,
+            seconds: this.state.favChecked ? parseInt(this.state.seconds) : -1,
+          },
         },
-      });
+        config
+      );
       this.setState({
         header: '',
         body: '',
@@ -233,9 +250,7 @@ class CreateNoteFormPart extends Component {
                         <br />
                         <div hidden={!this.state.favChecked}>
                           Duration of the song:
-                          {this.millisToMinutesAndSeconds(this.context.nowPlaying.songduration).minutes +
-                            ':' +
-                            this.millisToMinutesAndSeconds(this.context.nowPlaying.songduration).seconds}
+                          {this.millisToMinutesAndSeconds(this.context.nowPlaying.songduration).minutes + ':' + this.millisToMinutesAndSeconds(this.context.nowPlaying.songduration).seconds}
                         </div>
                       </div>
                       <ul className='best-part'>

@@ -8,7 +8,9 @@ import { LocalStrategy } from './local.strategy';
 import { UsersModule } from '../users/users.module';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './roles/roles.guard';
-
+/**
+ * TODO: Set JWT expiration time
+ * */
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -16,7 +18,7 @@ import { RolesGuard } from './roles/roles.guard';
     PassportModule,
     JwtModule.register({
       secret: process.env.JWT_SECRETS,
-      signOptions: { expiresIn: '300s' },
+      signOptions: { expiresIn: '30000s' },
     }),
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy, RolesGuard],

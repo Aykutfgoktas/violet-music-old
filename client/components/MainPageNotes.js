@@ -14,7 +14,7 @@ class MainPageNotes extends Component {
               cardheader={n.header}
               cardbody={n.body}
               carddate={n.date.day + '/' + n.date.month + '/' + n.date.year}
-              writtenby={n.nickname}
+              writtenby={n.user.nickname}
               songid={this.context.nowPlaying.songid}
               duration={n.bestPart}
             />

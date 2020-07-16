@@ -26,10 +26,10 @@ class SpotifyProvider extends Component {
   componentDidMount() {
     const params = this.getHashParams();
     this.state = { loggedIn: params.access_token ? true : false };
-    const access_token = localStorage.getItem('access_token');
-    console.log(access_token);
-    if (params.access_token && access_token) {
+    const violet_access_token = localStorage.getItem('access_token');
+    if (params.access_token && violet_access_token) {
       this.spotifyWebApi.setAccessToken(params.access_token);
+      this.setState({ VAC: violet_access_token });
       this.getBothNotesAndNowPlaying()
         .then(() => {
           this.getPopularSong();
@@ -62,6 +62,7 @@ class SpotifyProvider extends Component {
     try {
       const notes = await axios.get(process.env.GET_POPULAR_SONG);
       this.setState({ popularsongs: notes.data.popularsongs });
+      console.log('Popular songs', notes);
       return notes.data.popularsongs;
     } catch (error) {
       console.log(error);
@@ -117,7 +118,8 @@ class SpotifyProvider extends Component {
   getListOfSongs = async (page = 1) => {
     try {
       this.setState({ listOfSongsLoading: true });
-      const response = await axios.get(process.env.GET_LIST_OF_SONGS + page);
+      const response = await axios.get(process.env.GET_LIST_OF_SONGS + '/?page=' + page);
+      console.log('List of song:', response);
       console.log(response.data.count);
       const pageCount = response.data.count % 5 === 0 ? response.data.count / 5 : Math.floor(response.data.count / 5 + 1);
       this.setState({ listOfSongs: response.data.foundSongs, pageListOfSongs: pageCount, listOfSongsLoading: false });
@@ -132,6 +134,7 @@ class SpotifyProvider extends Component {
   getCurrentSongNotes = async (songid) => {
     try {
       const notes = await axios.get(process.env.GET_SONG_NOTES + songid);
+      console.log('Notes:', notes);
       this.setState({ currentNotes: notes.data.notes });
       return notes.data.notes;
     } catch (error) {
@@ -162,6 +165,7 @@ class SpotifyProvider extends Component {
           listOfSongs: this.state.listOfSongs,
           pageListOfSongs: this.state.pageListOfSongs,
           listOfSongsLoading: this.state.listOfSongsLoading,
+          VAC: this.state.VAC,
           getListOfSongs: this.getListOfSongs,
           getNowPlaying: this.getNowPlaying,
           playFavPart: this.playFavPart,
