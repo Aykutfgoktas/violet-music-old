@@ -19,9 +19,9 @@ export class SongService {
     }
   }
 
-  async find(songid: string): Promise<Song[]> {
+  async find(songid: string): Promise<Song> {
     const songs = await this.songModel
-      .find({ id: songid })
+      .findOne({ id: songid })
       .populate({ path: 'notes', select: '-__v', populate: { path: 'user', select: 'nickname' } })
       .select('-__v -_id');
 
@@ -37,15 +37,15 @@ export class SongService {
     return popularsongs;
   }
 
-  async getSongsWithPagination(page: number): Promise<{ foundSongs: Song[]; count: number }> {
+  async getSongsWithPagination(page: number): Promise<{ songs: Song[]; count: number }> {
     const count = await this.songModel.countDocuments();
-    const foundSongs = await this.songModel
+    const songs = await this.songModel
       .find({})
       .sort('name')
       .select('name artistname artistimage noteCount id')
       .skip(5 * page - 5)
       .limit(5);
-    return { foundSongs, count };
+    return { songs, count };
   }
 
   private async checkIfSongExist(songid: string): Promise<Song[]> {

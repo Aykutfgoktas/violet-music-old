@@ -12,7 +12,7 @@ export class SongController {
     if (query.page) {
       try {
         const foundedSong = await this.songService.getSongsWithPagination(page);
-        return res.status(HttpStatus.ACCEPTED).json({ status: 'success', foundSongs: foundedSong.foundSongs, count: foundedSong.count });
+        return res.status(HttpStatus.ACCEPTED).json({ status: 'success', songs: foundedSong.songs, count: foundedSong.count });
       } catch (error) {
         console.log(error);
         return res.json({ status: 'error', foundSongs: [], count: 0 });

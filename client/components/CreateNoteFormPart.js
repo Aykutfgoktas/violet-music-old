@@ -12,10 +12,8 @@ class CreateNoteFormPart extends Component {
     minutes: -1,
     seconds: -1,
     body: '',
-    nickname: '',
     headerError: false,
     bodyError: false,
-    nicknameError: false,
     dimActive: false,
     favChecked: false,
     errorBoxShow: false,
@@ -30,7 +28,7 @@ class CreateNoteFormPart extends Component {
   }
 
   getFormValue = (event) => {
-    const limit = { headerLimit: 30, bodyLimit: 298, nicknameLimit: 7 };
+    const limit = { headerLimit: 30, bodyLimit: 298 };
     if (event.target.name === 'seconds') {
       if (event.target.value <= 9 && event.target.value != 0) {
         event.target.value = '0' + event.target.value;
@@ -80,25 +78,12 @@ class CreateNoteFormPart extends Component {
     } else {
       this.setState({ favChecked: false, loadingAnimate: { transform: 'rotateY(180deg)' }, responseStatus: 'creating' });
 
-      /**
-   readonly header: string;
-readonly body: string;
-readonly songname: string;
-  readonly songid: string;
- readonly bestPart: { minutes: number, seconds: number };
-readonly artistname: string;
-readonly artistimage: string;
- */
       var config = { headers: { Authorization: 'bearer ' + this.context.VAC } };
       const response = await axios.post(
         process.env.CREATE_NOTE,
         {
           header: this.state.header,
           body: this.state.body,
-          /**
-           * TODO: DELETE NICKNAME ON REQUEST
-           * */
-          nickname: this.state.nickname,
           songname: this.context.nowPlaying.name,
           artistname: this.context.nowPlaying.artistname,
           songid: this.context.nowPlaying.songid,
@@ -113,10 +98,8 @@ readonly artistimage: string;
       this.setState({
         header: '',
         body: '',
-        nickname: '',
         headerError: false,
         bodyError: false,
-        nicknameError: false,
         minutes: -1,
         seconds: -1,
       });
@@ -188,7 +171,7 @@ readonly artistimage: string;
                 cardbody={this.state.body}
                 carddate={this.getNowDate()}
                 songid={this.context.nowPlaying.songid}
-                writtenby={this.state.nickname}
+                writtenby='ASD'
                 duration={{ minutes: this.state.minutes, seconds: this.state.seconds }}
               />
             </div>
@@ -226,20 +209,6 @@ readonly artistimage: string;
                       ></textarea>
                       <span hidden={!this.state.bodyError} className='error-message'>
                         You have {300 - this.state.body.length} character left
-                      </span>
-                      <input
-                        minLength={3}
-                        value={this.state.nickname}
-                        maxLength={15}
-                        autoComplete='off'
-                        onChange={this.getFormValue}
-                        required
-                        placeholder='Any nick-name?'
-                        name='nickname'
-                        className='msg-input'
-                      ></input>
-                      <span hidden={!this.state.nicknameError} className='error-message'>
-                        You have {15 - this.state.nickname.length} character left
                       </span>
 
                       <div className='fav-checkbox-div'>

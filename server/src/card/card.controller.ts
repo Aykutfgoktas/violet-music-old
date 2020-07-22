@@ -24,14 +24,24 @@ export class CardController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Post('create')
   async createNote(@Res() res: Response, @Body() createCardDto: CreateCardDto, @Request() req): Promise<Response> {
-    const user = req.user;
-    const songCard = await this.cardService.create(createCardDto, user);
-    return res.status(HttpStatus.CREATED).json(songCard);
+    try {
+      const user = req.user;
+      const note = await this.cardService.create(createCardDto, user);
+      return res.status(HttpStatus.CREATED).json({ status: 200, msg: 'Note has been created.', note });
+    } catch (error) {
+      console.log(error);
+      return res.status(HttpStatus.CREATED).json({ status: 200, msg: error.message });
+    }
   }
   /** Get the notes for the current playing song. Get the id of the Spotify songs id */
   @Get('find/:id')
   async getnotes(@Param('id') id: string, @Res() res: Response): Promise<Response> {
     const notes = await this.cardService.find(id);
-    return res.status(HttpStatus.ACCEPTED).json({ status: 'success', notes });
+    console.log(notes);
+    if (notes) {
+      return res.status(HttpStatus.ACCEPTED).json({ status: 202, msg: 'success', songWithNotes: notes });
+    } else {
+      return res.status(HttpStatus.ACCEPTED).json({ status: 202, msg: 'not found', notes: [] });
+    }
   }
 }
